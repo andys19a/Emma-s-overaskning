@@ -1,9 +1,9 @@
 {
-  "dependencies": {
-      "dev": "next dev",
-      "build": "next build",
-      "start": "next start",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+  "name": "emmas-overaskning-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix emmas-overraskning run dev",
+    "build": "npm --prefix emmas-overraskning run build",
+    "start": "npm --prefix emmas-overraskning run start"
   }
 }
