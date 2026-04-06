@@ -8,8 +8,11 @@ export default function Home() {
       <div className="card">
         <h2>Emma</h2>
 
-        <SwipeCard src="/Alm.jpeg" alt="Emma">
+        <SwipeCard src="/Alm.jpeg" alt="Emma" >
+        
         </SwipeCard>
+
+
 
         <div className="profil">
           <ul>
