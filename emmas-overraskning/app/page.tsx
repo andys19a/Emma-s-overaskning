@@ -68,6 +68,8 @@ export default function Home() {
           onNo={next}
         />
 
+
+
         <div className="profil">
           <ul>
             <li><strong>Ålder:</strong> {profile.age} år</li>
