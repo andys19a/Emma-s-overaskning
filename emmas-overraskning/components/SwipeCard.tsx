@@ -6,68 +6,66 @@ import { useSwipeable } from 'react-swipeable'
 type Props = {
   src: string
   alt?: string
+  name: string
+  age: number
+  description: string
+  tags: string[]
   onLike?: () => void
   onNo?: () => void
-  children?: React.ReactNode
 }
 
-export default function SwipeCard({ src, alt, onLike, onNo, children }: Props) {
-  const [anim, setAnim] = useState<'idle' | 'like' | 'no' | null>(null)
+export default function SwipeCard({ src, alt, name, age, description, tags, onLike, onNo }: Props) {
+  const [anim, setAnim] = useState<'like' | 'no' | null>(null)
+
+  const triggerLike = () => {
+    if (anim) return
+    setAnim('like')
+    setTimeout(() => { setAnim(null); onLike?.() }, 450)
+  }
+
+  const triggerNo = () => {
+    if (anim) return
+    setAnim('no')
+    setTimeout(() => { setAnim(null); onNo?.() }, 450)
+  }
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => {
-      setAnim('no')
-      onNo?.()
-      setTimeout(() => setAnim(null), 600)
-    },
-    onSwipedRight: () => {
-      setAnim('like')
-      onLike?.()
-      setTimeout(() => setAnim(null), 600)
-    },
+    onSwipedRight: triggerLike,
+    onSwipedLeft: triggerNo,
+    preventScrollOnSwipe: true,
   })
 
   const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'ArrowRight') {
-      setAnim('like')
-      onLike?.()
-      setTimeout(() => setAnim(null), 600)
-    } else if (e.key === 'ArrowLeft') {
-      setAnim('no')
-      onNo?.()
-      setTimeout(() => setAnim(null), 600)
-    }
+    if (e.key === 'ArrowRight') triggerLike()
+    else if (e.key === 'ArrowLeft') triggerNo()
   }
 
   return (
-    <div {...handlers} tabIndex={0} onKeyDown={handleKey} className={`swipe-card ${anim ? 'anim-' + anim : ''}`}>
-      <img src={src} alt={alt} />
-
-      <button
-        className="swipe-icon like"
-        onClick={() => {
-          setAnim('like')
-          onLike?.()
-          setTimeout(() => setAnim(null), 600)
-        }}
-        aria-label="like"
+    <div className="swipe-wrapper">
+      <div
+        {...handlers}
+        tabIndex={0}
+        onKeyDown={handleKey}
+        className={`swipe-card${anim ? ' anim-' + anim : ''}`}
       >
-        ♥
-      </button>
+        <div className="swipe-card-image">
+          <img src={src} alt={alt ?? name} />
+        </div>
+        <div className="swipe-card-body">
+          <h2 className="swipe-card-name">{name}, {age}</h2>
+          <p className="swipe-card-desc">{description}</p>
+          <div className="swipe-card-tags">
+            {tags.map(tag => (
+              <span key={tag} className="swipe-tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
 
-      <button
-        className="swipe-icon no"
-        onClick={() => {
-          setAnim('no')
-          onNo?.()
-          setTimeout(() => setAnim(null), 600)
-        }}
-        aria-label="no"
-      >
-        ✕
-      </button>
-
-      {children}
+      <div className="swipe-buttons">
+        <button className="btn-no" onClick={triggerNo} aria-label="Nej">✕</button>
+        <button className="btn-like" onClick={triggerLike} aria-label="Gilla">♥</button>
+      </div>
     </div>
   )
 }

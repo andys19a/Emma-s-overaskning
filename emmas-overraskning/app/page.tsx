@@ -8,19 +8,15 @@ const profiles = [
     name: "Emma",
     src: "/Alm.jpeg",
     age: 28,
-    yrke: "Grafisk designer",
-    intressen: "Resor, matlagning, yoga",
-    beskrivning:
-      "En äventyrlig själ som älskar att utforska nya platser och kulturer. Hon är passionerad om matlagning och drömmer om att starta sin egen restaurang en dag.",
+    description: "Äventyrlig och varm! Alltid redo för nästa galna idé. 🌸",
+    tags: ["Grafisk designer", "Resor", "Yoga"],
   },
   {
     name: "Sofia",
     src: "/Hardcore_60_ding.png",
     age: 25,
-    yrke: "Fotograf",
-    intressen: "Natur, musik, löpning",
-    beskrivning:
-      "Sofia älskar att fånga ögonblick med sin kamera och tillbringa helgerna ute i naturen. Hon spelar även gitarr och är alltid redo för ett nytt äventyr.",
+    description: "Spontan och kreativ! Kommer garanterat hitta på något galet. 🎨",
+    tags: ["Fotograf", "Natur", "Vinälskare"],
   },
   // Lägg till fler profiler här
 ]
@@ -31,56 +27,44 @@ export default function Home() {
 
   const next = () => {
     if (index + 1 < profiles.length) {
-      setIndex(index + 1)
+      setIndex(i => i + 1)
     } else {
       setDone(true)
     }
   }
 
-  if (done) {
-    return (
-      <main>
-        <h1>Hitta din match</h1>
-        <div className="card">
-          <h2>Inga fler profiler!</h2>
-          <p style={{ textAlign: "center", padding: "2rem" }}>
-            Du har sett alla profiler.
-          </p>
-        </div>
-      </main>
-    )
-  }
-
-  const profile = profiles[index]
-
   return (
     <main>
-      <h1>Hitta din match</h1>
+      <div className="page-header">
+        <h1 className="page-title">
+          <span className="heart">💕</span> Möhippa Swipe <span className="heart">💕</span>
+        </h1>
+        <p className="page-subtitle">Swipa höger för att lägga till i gänget!</p>
+        {!done && (
+          <p className="page-counter">{index + 1} / {profiles.length}</p>
+        )}
+      </div>
 
-      <div className="card">
-        <h2>{profile.name}</h2>
-
+      {done ? (
+        <div className="swipe-card done-card">
+          <div className="swipe-card-body" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
+            <p style={{ fontSize: '3rem' }}>🎉</p>
+            <h2 className="swipe-card-name">Klart!</h2>
+            <p className="swipe-card-desc">Du har sett alla i gänget.</p>
+          </div>
+        </div>
+      ) : (
         <SwipeCard
           key={index}
-          src={profile.src}
-          alt={profile.name}
+          src={profiles[index].src}
+          name={profiles[index].name}
+          age={profiles[index].age}
+          description={profiles[index].description}
+          tags={profiles[index].tags}
           onLike={next}
           onNo={next}
         />
-
-
-
-        <div className="profil">
-          <ul>
-            <li><strong>Ålder:</strong> {profile.age} år</li>
-            <li><strong>Yrke:</strong> {profile.yrke}</li>
-            <li><strong>Intressen:</strong> {profile.intressen}</li>
-          </ul>
-        </div>
-      </div>
-      <div className="beskrivning">
-        <p>{profile.beskrivning}</p>
-      </div>
+      )}
     </main>
   )
 }
