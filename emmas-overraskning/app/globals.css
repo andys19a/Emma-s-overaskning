@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
     margin: 0;
     padding: 0;
     font-family: poppins, sans-serif;
-    background-color: #e6457a;
+    background-color: hwb(319 87% 2%);
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .profilbild{
@@ -120,7 +127,7 @@ h2 {
 .profil {
     border: 2px solid #000000;
     display: flex;
-    background-color: rgb(185, 110, 110);
+    background-color: rgb(247, 202, 253);
 }
 
 .profil ul {
@@ -131,7 +138,8 @@ h2 {
 
 .beskrivning {
     font-size: 1rem;
-    color: #fefeff;
-    margin-bottom: 1rem;
-    display: flex;
-} 
+    color: #fff;
+    margin-top: 0.5rem;
+    border: #000000 2px solid;
+    background-color: rgb(247, 202, 253);
+}
