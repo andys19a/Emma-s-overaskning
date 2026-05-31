@@ -16,9 +16,12 @@ body {
   min-height: 100vh;
 }
 
+/* ─────────────────────────────
+   Layout
+───────────────────────────── */
 main {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
   display: flex;
@@ -26,7 +29,33 @@ main {
   align-items: center;
 }
 
-/* ── Header ── */
+/* Tablet */
+@media (min-width: 768px) {
+  main {
+    max-width: 560px;
+    padding: 2.5rem 2rem 3.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  main {
+    max-width: 700px;
+    padding: 3rem 2rem 4rem;
+  }
+}
+
+/* TV / large screens */
+@media (min-width: 1600px) {
+  main {
+    max-width: 900px;
+    padding: 4rem 2rem 5rem;
+  }
+}
+
+/* ─────────────────────────────
+   Header
+───────────────────────────── */
 .page-header {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -59,7 +88,32 @@ main {
   margin: 0;
 }
 
-/* ── Swipe wrapper (card + buttons) ── */
+@media (min-width: 768px) {
+  .page-title   { font-size: 2.4rem; }
+  .heart        { font-size: 2rem; }
+  .page-subtitle { font-size: 1.1rem; }
+  .page-counter  { font-size: 1rem; }
+  .page-header  { margin-bottom: 2rem; }
+}
+
+@media (min-width: 1280px) {
+  .page-title   { font-size: 3rem; }
+  .heart        { font-size: 2.4rem; }
+  .page-subtitle { font-size: 1.3rem; }
+  .page-counter  { font-size: 1.1rem; }
+}
+
+@media (min-width: 1600px) {
+  .page-title   { font-size: 4rem; }
+  .heart        { font-size: 3rem; }
+  .page-subtitle { font-size: 1.6rem; }
+  .page-counter  { font-size: 1.4rem; }
+  .page-header  { margin-bottom: 2.5rem; }
+}
+
+/* ─────────────────────────────
+   Swipe wrapper
+───────────────────────────── */
 .swipe-wrapper {
   width: 100%;
   display: flex;
@@ -68,7 +122,12 @@ main {
   gap: 1.5rem;
 }
 
-/* ── Card ── */
+@media (min-width: 768px)  { .swipe-wrapper { gap: 2rem; } }
+@media (min-width: 1600px) { .swipe-wrapper { gap: 3rem; } }
+
+/* ─────────────────────────────
+   Card
+───────────────────────────── */
 .swipe-card {
   width: 100%;
   background: #fff;
@@ -80,31 +139,34 @@ main {
   user-select: none;
 }
 
-.swipe-card:focus {
-  outline: none;
-}
-
-.swipe-card:active {
-  cursor: grabbing;
-}
+.swipe-card:focus  { outline: none; }
+.swipe-card:active { cursor: grabbing; }
 
 .swipe-card.anim-like {
   transform: translateX(130%) rotate(18deg);
   opacity: 0;
 }
-
 .swipe-card.anim-no {
   transform: translateX(-130%) rotate(-18deg);
   opacity: 0;
 }
 
-/* ── Card image ── */
+@media (min-width: 768px)  { .swipe-card { border-radius: 24px; } }
+@media (min-width: 1600px) { .swipe-card { border-radius: 32px; box-shadow: 0 16px 60px rgba(0,0,0,0.15); } }
+
+/* ─────────────────────────────
+   Card image
+───────────────────────────── */
 .swipe-card-image {
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   flex-shrink: 0;
 }
+
+/* Taller image on bigger screens so more of the photo shows */
+@media (min-width: 768px)  { .swipe-card-image { aspect-ratio: 3 / 2; } }
+@media (min-width: 1280px) { .swipe-card-image { aspect-ratio: 16 / 9; } }
 
 .swipe-card-image img {
   width: 100%;
@@ -115,10 +177,16 @@ main {
   pointer-events: none;
 }
 
-/* ── Card body ── */
+/* ─────────────────────────────
+   Card body
+───────────────────────────── */
 .swipe-card-body {
   padding: 1.2rem 1.4rem 1.4rem;
 }
+
+@media (min-width: 768px)  { .swipe-card-body { padding: 1.6rem 2rem 1.8rem; } }
+@media (min-width: 1280px) { .swipe-card-body { padding: 2rem 2.4rem 2.2rem; } }
+@media (min-width: 1600px) { .swipe-card-body { padding: 2.4rem 3rem 2.8rem; } }
 
 .swipe-card-name {
   font-size: 1.6rem;
@@ -134,7 +202,24 @@ main {
   line-height: 1.5;
 }
 
-/* ── Tags ── */
+@media (min-width: 768px) {
+  .swipe-card-name { font-size: 2.2rem; }
+  .swipe-card-desc { font-size: 1.15rem; }
+}
+
+@media (min-width: 1280px) {
+  .swipe-card-name { font-size: 2.8rem; }
+  .swipe-card-desc { font-size: 1.35rem; }
+}
+
+@media (min-width: 1600px) {
+  .swipe-card-name { font-size: 3.4rem; margin-bottom: 0.6rem; }
+  .swipe-card-desc { font-size: 1.6rem; margin-bottom: 1.2rem; }
+}
+
+/* ─────────────────────────────
+   Tags
+───────────────────────────── */
 .swipe-card-tags {
   display: flex;
   flex-wrap: wrap;
@@ -150,12 +235,31 @@ main {
   border-radius: 999px;
 }
 
-/* ── Buttons ── */
+@media (min-width: 768px) {
+  .swipe-tag { font-size: 1rem; padding: 0.4rem 1.2rem; }
+  .swipe-card-tags { gap: 0.6rem; }
+}
+
+@media (min-width: 1280px) {
+  .swipe-tag { font-size: 1.2rem; padding: 0.5rem 1.5rem; }
+}
+
+@media (min-width: 1600px) {
+  .swipe-tag { font-size: 1.4rem; padding: 0.6rem 1.8rem; }
+  .swipe-card-tags { gap: 0.8rem; }
+}
+
+/* ─────────────────────────────
+   Buttons
+───────────────────────────── */
 .swipe-buttons {
   display: flex;
   gap: 2rem;
   justify-content: center;
 }
+
+@media (min-width: 768px)  { .swipe-buttons { gap: 3rem; } }
+@media (min-width: 1600px) { .swipe-buttons { gap: 5rem; } }
 
 .btn-no,
 .btn-like {
@@ -171,13 +275,54 @@ main {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+@media (min-width: 768px) {
+  .btn-no, .btn-like { width: 90px; height: 90px; }
+}
+
+@media (min-width: 1280px) {
+  .btn-no, .btn-like { width: 110px; height: 110px; }
+}
+
+@media (min-width: 1600px) {
+  .btn-no, .btn-like { width: 140px; height: 140px; }
+}
+
 .btn-no:hover,
 .btn-like:hover {
   transform: scale(1.08);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-/* ── Done screen ── */
+.btn-no {
+  background: rgba(200, 0, 50, 0.95);
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.btn-like {
+  background: rgba(0, 200, 100, 0.95);
+  color: #fff;
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  .btn-no   { font-size: 1.8rem; }
+  .btn-like { font-size: 2.6rem; }
+}
+
+@media (min-width: 1280px) {
+  .btn-no   { font-size: 2.2rem; }
+  .btn-like { font-size: 3.2rem; }
+}
+
+@media (min-width: 1600px) {
+  .btn-no   { font-size: 2.8rem; }
+  .btn-like { font-size: 4rem; }
+}
+
+/* ─────────────────────────────
+   Done screen
+───────────────────────────── */
 .done-screen {
   width: 100%;
   background: #fff;
@@ -186,6 +331,9 @@ main {
   padding: 2rem 1.5rem;
   text-align: center;
 }
+
+@media (min-width: 768px)  { .done-screen { border-radius: 24px; padding: 3rem 2.5rem; } }
+@media (min-width: 1600px) { .done-screen { border-radius: 32px; padding: 4rem 3.5rem; } }
 
 .done-emoji {
   font-size: 3rem;
@@ -210,6 +358,20 @@ main {
   font-size: 1.2rem;
 }
 
+@media (min-width: 768px) {
+  .done-emoji   { font-size: 4rem; }
+  .done-title   { font-size: 2.4rem; }
+  .done-summary { font-size: 1.3rem; }
+  .done-summary strong { font-size: 1.5rem; }
+}
+
+@media (min-width: 1600px) {
+  .done-emoji   { font-size: 6rem; }
+  .done-title   { font-size: 3.5rem; }
+  .done-summary { font-size: 1.8rem; }
+  .done-summary strong { font-size: 2rem; }
+}
+
 .done-liked-label {
   font-size: 0.9rem;
   font-weight: 600;
@@ -223,6 +385,25 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+/* On large screens show liked profiles in a grid */
+@media (min-width: 768px) {
+  .done-liked-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .done-liked-label { font-size: 1.1rem; margin-bottom: 1.25rem; }
+}
+
+@media (min-width: 1280px) {
+  .done-liked-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1600px) {
+  .done-liked-list { gap: 1.5rem; }
+  .done-liked-label { font-size: 1.4rem; }
 }
 
 .done-liked-item {
@@ -249,20 +430,21 @@ main {
   color: #c2185b;
 }
 
+@media (min-width: 768px) {
+  .done-liked-img  { width: 64px; height: 64px; }
+  .done-liked-name { font-size: 1.2rem; }
+}
+
+@media (min-width: 1600px) {
+  .done-liked-img  { width: 90px; height: 90px; }
+  .done-liked-name { font-size: 1.6rem; }
+  .done-liked-item { padding: 0.6rem 1.4rem 0.6rem 0.6rem; gap: 1.2rem; }
+}
+
 .done-none {
   color: #aaa;
   font-size: 0.95rem;
   margin-top: 1rem;
 }
 
-.btn-no {
-  background: rgba(200, 0, 50, 0.95);
-  color: #fff;
-  font-size: 1.4rem;
-}
-
-.btn-like {
-  background: rgba(0, 200, 100, 0.95);
-  color: #fff;
-  font-size: 2rem;
-}
+@media (min-width: 1600px) { .done-none { font-size: 1.4rem; } }
