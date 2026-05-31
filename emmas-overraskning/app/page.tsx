@@ -6,14 +6,14 @@ import SwipeCard from "@/components/SwipeCard"
 const profiles = [
   {
     name: "Emma",
-    src: "/Alm.jpeg",
+    src: "/Emma.jpeg",
     age: 28,
     description: "Äventyrlig och varm! Alltid redo för nästa galna idé. 🌸",
     tags: ["Grafisk designer", "Resor", "Yoga"],
   },
   {
     name: "Sofia",
-    src: "/Hardcore_60_ding.png",
+    src: "/Sofia.jpeg",
     age: 25,
     description: "Spontan och kreativ! Kommer garanterat hitta på något galet. 🎨",
     tags: ["Fotograf", "Natur", "Vinälskare"],
