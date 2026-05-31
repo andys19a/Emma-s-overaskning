@@ -18,14 +18,45 @@ const profiles = [
     description: "Spontan och kreativ! Kommer garanterat hitta på något galet. 🎨",
     tags: ["Fotograf", "Natur", "Vinälskare"],
   },
+  {
+    name: "Lisa",
+    src: "/Lisa.jpeg",
+    age: 27,
+    description: "Social och omtänksam! Alltid där för att sprida glädje. 🌟",
+    tags: ["Eventplanerare", "Matlagning", "Hundälskare"],
+  },
+  {
+    name: "Anna",
+    src: "/Anna.jpeg",
+    age: 29,
+    description: "Rolig och energisk! Kommer garanterat göra dagen oförglömlig. 🎉",
+    tags: ["Marknadsföring", "Dans", "Resor"],
+  },
+  {
+    name: "Elin",
+    src: "/Elin.jpeg",
+    age: 26,
+    description: "Intelligent och engagerad! Alltid redo för nya utmaningar. 📚",
+    tags: ["Dataanalys", "Lärande", "Volontärarbete"],
+  },
   // Lägg till fler profiler här
 ]
 
 export default function Home() {
   const [index, setIndex] = useState(0)
   const [done, setDone] = useState(false)
+  const [liked, setLiked] = useState<typeof profiles>([])
 
-  const next = () => {
+  const handleLike = () => {
+    setLiked(prev => [...prev, profiles[index]])
+    goNext()
+  }
+
+  const handleNo = () => {
+    goNext()
+  }
+
+  const goNext = () => {
     if (index + 1 < profiles.length) {
       setIndex(i => i + 1)
     } else {
@@ -37,7 +68,7 @@ export default function Home() {
     <main>
       <div className="page-header">
         <h1 className="page-title">
-          <span className="heart">💕</span> Möhippa Swipe <span className="heart">💕</span>
+          <span className="heart">💕</span> Hitta dina babes <span className="heart">💕</span>
         </h1>
         <p className="page-subtitle">Swipa höger för att lägga till i gänget!</p>
         {!done && (
@@ -46,12 +77,28 @@ export default function Home() {
       </div>
 
       {done ? (
-        <div className="swipe-card done-card">
-          <div className="swipe-card-body" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
-            <p style={{ fontSize: '3rem' }}>🎉</p>
-            <h2 className="swipe-card-name">Klart!</h2>
-            <p className="swipe-card-desc">Du har sett alla i gänget.</p>
-          </div>
+        <div className="done-screen">
+          <p className="done-emoji">🎉</p>
+          <h2 className="done-title">Klart!</h2>
+  
+
+          {liked.length > 0 && (
+            <div className="done-liked">
+              <p className="done-liked-label">Dina hjärtegull:</p>
+              <div className="done-liked-list">
+                {liked.map(p => (
+                  <div key={p.name} className="done-liked-item">
+                    <img src={p.src} alt={p.name} className="done-liked-img" />
+                    <span className="done-liked-name">{p.name}, {p.age}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {liked.length === 0 && (
+            <p className="done-none">Ingen kom med den här gången 😅</p>
+          )}
         </div>
       ) : (
         <SwipeCard
@@ -61,8 +108,8 @@ export default function Home() {
           age={profiles[index].age}
           description={profiles[index].description}
           tags={profiles[index].tags}
-          onLike={next}
-          onNo={next}
+          onLike={handleLike}
+          onNo={handleNo}
         />
       )}
     </main>

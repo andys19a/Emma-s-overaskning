@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "emmas-overraskning (Next.js)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "emmas-overraskning", "run", "dev"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
